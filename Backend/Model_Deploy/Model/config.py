@@ -1,6 +1,14 @@
 from torch import nn
 from transformers import BertModel
 
+from transformers import BertTokenizer
+
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+
+
+issue_label = ["Battery",'External','Internal',	'Screen',	'Service',	'Software']
+
+
 class BertClassifier(nn.Module):
 
     def __init__(self, dropout=0.1):
@@ -20,6 +28,13 @@ class BertClassifier(nn.Module):
         final_layer = self.relu(linear_output)
         return final_layer
 
-# GLOBAL_MODEL = torch.load("E:\Fall'22\Project 499\Backend\Model_Deploy\Model\model.pth",map_location=torch.device("cpu"))
-# GLOBAL_MODEL.eval()
+
+
+def predict_issue(model,text):
+  model.eval()
+  input = tokenizer( text ,  padding='max_length', max_length = 185, truncation=True,return_tensors="pt") 
+  mask = input['attention_mask']
+  input_id = input['input_ids'].squeeze(1)
+  return issue_label[model(input_id,mask).argmax(axis=-1)]
+
 x = 10
