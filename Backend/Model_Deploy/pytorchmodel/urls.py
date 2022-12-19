@@ -2,6 +2,6 @@ from django.urls import path,include
 from pytorchmodel import views
 urlpatterns = [
     # path('',views.detail)
-    # path('',views.snippet_list),
-    path('test',views.test)
+    path('',views.snippet_list),
+    # path('test',views.test)
 ]
