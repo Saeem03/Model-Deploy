@@ -32,14 +32,16 @@ from sklearn.utils.extmath import softmax
 import numpy as np
 
 def predict_issue(model,text):
-  model.eval()
+  # model.eval()
   return_data = {}
   input = tokenizer( text ,  padding='max_length', max_length = 185, truncation=True,return_tensors="pt") 
   mask = input['attention_mask']
   input_id = input['input_ids'].squeeze(1)
   prediction_array = list(model(input_id,mask).detach().numpy())
-  return_data['prediction_array'] = softmax(prediction_array)
+  return_data['prediction_array'] = softmax(prediction_array)*100
+  return_data['prediction_array'] = np.round(return_data['prediction_array']).astype(int)
   return_data['prediction_output'] = issue_label[model(input_id,mask).argmax(axis=-1)]
+  return_data['labels'] = issue_label
   return return_data
 #   return issue_label[model(input_id,mask).argmax(axis=-1)]
 
