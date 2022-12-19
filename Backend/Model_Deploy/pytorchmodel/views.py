@@ -42,7 +42,6 @@ def snippet_list(request):
     elif request.method == 'POST':
         print(request.data)
         MODEL = settings.GLOBAL_MODEL
-        MODEL.eval()    
         return Response(predict_issue(MODEL,request.data['complaint']), status=status.HTTP_200_OK)
         # import json
         # f = open("./Model/non_iid.json")
