@@ -61,3 +61,6 @@ def snippet_list(request):
 #         # for t in text:  
 #         #         print(predict_issue(MODEL,t))
 #         return JsonResponse({'name':"Saeem",'Age':10,"Gender":"Male"})
+
+# Database : sqllite for string user feeedback and compile
+# for 

@@ -136,3 +136,4 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 # this is for corsheaders (pip)
 CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = ['*']
