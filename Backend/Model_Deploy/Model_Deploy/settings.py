@@ -128,8 +128,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import torch 
-# GLOBAL_MODEL = torch.load("E:\Fall'22\Project 499\Backend\Model_Deploy\Model\model.pth",map_location=torch.device("cpu"))
-# GLOBAL_MODEL.eval()
+GLOBAL_MODEL = torch.load("E:\Fall'22\Project 499\Backend\Model_Deploy\Model\model.pth",map_location=torch.device("cpu"))
+GLOBAL_MODEL.eval()
 
 ALLOWED_HOSTS=['*']
 CORS_ORIGIN_ALLOW_ALL = True

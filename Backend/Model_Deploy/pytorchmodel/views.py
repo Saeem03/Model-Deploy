@@ -28,7 +28,6 @@ def complaint_submission(request):
 @csrf_exempt 
 def feedback_submission(request):
     if request.method == 'POST':
-        print("Feed back data")
         print(request.data)
         item = FeedBack(name=request.data['name'],review=request.data['review'])
         item.save()
@@ -37,30 +36,30 @@ def feedback_submission(request):
     return Response(request.data, status=status.HTTP_400_BAD_REQUEST)
 
 
-# @api_view(['GET', 'POST'])
-# @csrf_exempt 
-# def snippet_list(request):
-#     """
-#     List all code snippets, or create a new snippet.
-#     """
-#     if request.method == 'GET':
-#         return Response({"name":"Saeem"}, status=status.HTTP_200_OK)
-#         # MODEL = settings.GLOBAL_MODEL
-#         # MODEL.eval()
-#         # return Response(predict_issue(MODEL,request.data['complaint']), status=status.HTTP_200_OK)
+@api_view(['GET', 'POST'])
+@csrf_exempt 
+def snippet_list(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        return Response({"name":"Saeem"}, status=status.HTTP_200_OK)
+        # MODEL = settings.GLOBAL_MODEL
+        # MODEL.eval()
+        # return Response(predict_issue(MODEL,request.data['complaint']), status=status.HTTP_200_OK)
 
 
-#     elif request.method == 'POST':
-#         print(request.data)
-#         MODEL = settings.GLOBAL_MODEL
-#         return Response(predict_issue(MODEL,request.data['complaint']), status=status.HTTP_200_OK)
-#         # import json
-#         # f = open("./Model/non_iid.json")
-#         # data = json.load(f)
-#         # f.close()
-#         # return Response(data['Sheet1'], status=status.HTTP_200_OK)
+    elif request.method == 'POST':
+        print(request.data)
+        MODEL = settings.GLOBAL_MODEL
+        return Response(predict_issue(MODEL,request.data['complaint']), status=status.HTTP_200_OK)
+        # import json
+        # f = open("./Model/non_iid.json")
+        # data = json.load(f)
+        # f.close()
+        # return Response(data['Sheet1'], status=status.HTTP_200_OK)
     
-#     return Response(request.data, status=status.HTTP_400_BAD_REQUEST)
+    return Response(request.data, status=status.HTTP_400_BAD_REQUEST)
 
 
 # @csrf_exempt 
